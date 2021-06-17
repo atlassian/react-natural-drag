@@ -45,7 +45,7 @@ type Phase = Idle | Pending | Dragging;
 const idle: Idle = { type: 'IDLE' };
 // Decreased from 150 as a work around for an issue for forcepress on iOS
 // https://github.com/atlassian/react-beautiful-dnd/issues/1401
-export const timeForLongPress: number = 120;
+export const defaultTimeForLongPress: number = 120;
 export const forcePressThreshold: number = 0.15;
 
 type GetBindingArgs = {|
@@ -405,7 +405,7 @@ export default function useTouchSensor(api: SensorAPI) {
 
       const longPressTimerId: TimeoutID = setTimeout(
         startDragging,
-        timeForLongPress,
+        actions.timeForLongPress(),
       );
 
       setPhase({

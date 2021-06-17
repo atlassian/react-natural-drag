@@ -24,6 +24,7 @@ import type {
   GetDraggableDimensionFn,
 } from '../../../src/state/registry/registry-types';
 import createRegistry from '../../../src/state/registry/create-registry';
+import { defaultTimeForLongPress } from '../../../src/view/use-sensor-marshal/sensors/use-touch-sensor';
 
 const preset = getPreset();
 const noComputedSpacing = getComputedSpacing({});
@@ -37,6 +38,7 @@ type ItemProps = {|
 const defaultOptions: DraggableOptions = {
   canDragInteractiveElements: false,
   shouldRespectForcePress: false,
+  timeForLongPress: defaultTimeForLongPress,
   isEnabled: true,
 };
 

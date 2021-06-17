@@ -3,7 +3,7 @@ import React from 'react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import App from '../../util/app';
 import { isDragging } from '../../util/helpers';
-import { timeForLongPress } from '../../../../../src/view/use-sensor-marshal/sensors/use-touch-sensor';
+import { defaultTimeForLongPress } from '../../../../../src/view/use-sensor-marshal/sensors/use-touch-sensor';
 
 jest.useFakeTimers();
 
@@ -47,7 +47,7 @@ it('should not start dragging if finished before a long press', () => {
   expect(isDragging(handle)).toBe(false);
 
   // allow long press to run
-  jest.advanceTimersByTime(timeForLongPress - 1);
+  jest.advanceTimersByTime(defaultTimeForLongPress - 1);
 
   // not dragging yet
   expect(isDragging(handle)).toBe(false);
@@ -70,13 +70,13 @@ it('should allow a false start', () => {
 
   // a first attempt that is not successful
   fireEvent(handle, getTouchStart(handle));
-  jest.advanceTimersByTime(timeForLongPress - 1);
+  jest.advanceTimersByTime(defaultTimeForLongPress - 1);
   fireEvent.touchEnd(handle);
   expect(isDragging(handle)).toBe(false);
 
   // Let's try again - this time we will wait
 
   fireEvent(handle, getTouchStart(handle));
-  jest.advanceTimersByTime(timeForLongPress);
+  jest.advanceTimersByTime(defaultTimeForLongPress);
   expect(isDragging(handle)).toBe(true);
 });

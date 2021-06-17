@@ -167,6 +167,7 @@ export type PublicOwnProps = {|
   isDragDisabled?: boolean,
   disableInteractiveElementBlocking?: boolean,
   shouldRespectForcePress?: boolean,
+  timeForLongPress?: number,
 |};
 
 export type PrivateOwnProps = {|
@@ -176,6 +177,7 @@ export type PrivateOwnProps = {|
   isEnabled: boolean,
   canDragInteractiveElements: boolean,
   shouldRespectForcePress: boolean,
+  timeForLongPress: number,
 |};
 
 export type OwnProps = {|

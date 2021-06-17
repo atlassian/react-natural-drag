@@ -28,6 +28,7 @@ export type DraggableDescriptor = {|
 export type DraggableOptions = {|
   canDragInteractiveElements: boolean,
   shouldRespectForcePress: boolean,
+  timeForLongPress: number,
   isEnabled: boolean,
 |};
 
@@ -436,6 +437,7 @@ type DragActions = {|
   cancel: (args?: StopDragOptions) => void,
   isActive: () => boolean,
   shouldRespectForcePress: () => boolean,
+  timeForLongPress: () => number,
 |};
 
 export type FluidDragActions = {|
@@ -456,6 +458,7 @@ export type PreDragActions = {|
   isActive: () => boolean,
   // whether it has been indicated if force press should be respected
   shouldRespectForcePress: () => boolean,
+  timeForLongPress: () => number,
   // lift the current item
   fluidLift: (clientSelection: Position) => FluidDragActions,
   snapLift: () => SnapDragActions,

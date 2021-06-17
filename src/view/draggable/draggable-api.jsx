@@ -7,6 +7,7 @@ import useRequiredContext from '../use-required-context';
 import DroppableContext, {
   type DroppableContextValue,
 } from '../context/droppable-context';
+import { defaultTimeForLongPress } from '../use-sensor-marshal/sensors/use-touch-sensor';
 
 // We can use this to render a draggable with more control
 // It is used by a Droppable to render a clone
@@ -35,6 +36,10 @@ export function PublicDraggable(props: PublicOwnProps) {
   const shouldRespectForcePress: boolean = Boolean(
     props.shouldRespectForcePress,
   );
+  const timeForLongPress: number =
+    props.timeForLongPress !== undefined
+      ? Number(props.timeForLongPress)
+      : defaultTimeForLongPress;
 
   return (
     <PrivateDraggable
@@ -43,6 +48,7 @@ export function PublicDraggable(props: PublicOwnProps) {
       isEnabled={isEnabled}
       canDragInteractiveElements={canDragInteractiveElements}
       shouldRespectForcePress={shouldRespectForcePress}
+      timeForLongPress={timeForLongPress}
     />
   );
 }

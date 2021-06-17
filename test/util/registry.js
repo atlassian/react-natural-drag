@@ -17,6 +17,7 @@ import type {
 } from '../../src/state/registry/registry-types';
 import { getPreset } from './dimension';
 import { origin } from '../../src/state/position';
+import { defaultTimeForLongPress } from '../../src/view/use-sensor-marshal/sensors/use-touch-sensor';
 
 type DraggableArgs = {
   uniqueId?: Id,
@@ -26,6 +27,7 @@ type DraggableArgs = {
 const defaultOptions: DraggableOptions = {
   canDragInteractiveElements: true,
   shouldRespectForcePress: false,
+  timeForLongPress: defaultTimeForLongPress,
   isEnabled: true,
 };
 

@@ -54,6 +54,7 @@ export default function Draggable(props: Props) {
     draggableId,
     isEnabled,
     shouldRespectForcePress,
+    timeForLongPress,
     canDragInteractiveElements,
     isClone,
 
@@ -83,6 +84,7 @@ export default function Draggable(props: Props) {
         getDraggableRef: getRef,
         canDragInteractiveElements,
         shouldRespectForcePress,
+        timeForLongPress,
         isEnabled,
       }),
       [
@@ -91,6 +93,7 @@ export default function Draggable(props: Props) {
         getRef,
         canDragInteractiveElements,
         shouldRespectForcePress,
+        timeForLongPress,
         isEnabled,
       ],
     );

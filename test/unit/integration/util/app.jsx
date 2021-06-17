@@ -23,6 +23,7 @@ export type Item = {|
   canDragInteractiveElements?: boolean,
   // defaults to false
   shouldRespectForcePress?: boolean,
+  timeForLongPress?: number,
 |};
 
 export type RenderItem = (
@@ -169,6 +170,7 @@ export default function App(props: Props) {
                     item.shouldRespectForcePress,
                     false,
                   )}
+                  timeForLongPress={item.timeForLongPress}
                 >
                   {render(item)}
                 </Draggable>
