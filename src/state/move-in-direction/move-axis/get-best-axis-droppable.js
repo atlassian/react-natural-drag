@@ -14,6 +14,7 @@ import type {
 } from '../../../types';
 
 type GetBestDroppableArgs = {|
+  isMovingOnMainAxis?: boolean,
   isMovingForward: boolean,
   // the current position of the dragging item
   pageBorderBoxCenter: Position,
@@ -33,6 +34,7 @@ const getKnownActive = (droppable: DroppableDimension): Rect => {
 };
 
 export default ({
+  isMovingOnMainAxis,
   isMovingForward,
   pageBorderBoxCenter,
   source,
@@ -46,7 +48,23 @@ export default ({
   }
 
   const axis: Axis = source.axis;
-  const isBetweenSourceClipped = isWithin(active[axis.start], active[axis.end]);
+
+  const movementAxisStart = isMovingOnMainAxis
+    ? axis.start
+    : axis.crossAxisStart;
+  const movementAxisEnd = isMovingOnMainAxis ? axis.end : axis.crossAxisEnd;
+  const transverseAxisStart = isMovingOnMainAxis
+    ? axis.crossAxisStart
+    : axis.start;
+  const transverseAxisEnd = isMovingOnMainAxis ? axis.crossAxisEnd : axis.end;
+  const transverseAxisLine = isMovingOnMainAxis
+    ? axis.crossAxisLine
+    : axis.line;
+
+  const isBetweenSourceClipped = isWithin(
+    active[transverseAxisStart],
+    active[transverseAxisEnd],
+  );
   const candidates: DroppableDimension[] = toDroppableList(droppables)
     // Remove the source droppable from the list
     .filter((droppable: DroppableDimension): boolean => droppable !== source)
@@ -65,31 +83,31 @@ export default ({
 
       // is the target in front of the source on the cross axis?
       if (isMovingForward) {
-        return active[axis.crossAxisEnd] < activeOfTarget[axis.crossAxisEnd];
+        return active[movementAxisEnd] < activeOfTarget[movementAxisEnd];
       }
       // is the target behind the source on the cross axis?
-      return activeOfTarget[axis.crossAxisStart] < active[axis.crossAxisStart];
+      return activeOfTarget[movementAxisStart] < active[movementAxisStart];
     })
     // Must have some overlap on the main axis
     .filter((droppable: DroppableDimension): boolean => {
       const activeOfTarget: Rect = getKnownActive(droppable);
 
       const isBetweenDestinationClipped = isWithin(
-        activeOfTarget[axis.start],
-        activeOfTarget[axis.end],
+        activeOfTarget[transverseAxisStart],
+        activeOfTarget[transverseAxisEnd],
       );
 
       return (
-        isBetweenSourceClipped(activeOfTarget[axis.start]) ||
-        isBetweenSourceClipped(activeOfTarget[axis.end]) ||
-        isBetweenDestinationClipped(active[axis.start]) ||
-        isBetweenDestinationClipped(active[axis.end])
+        isBetweenSourceClipped(activeOfTarget[transverseAxisStart]) ||
+        isBetweenSourceClipped(activeOfTarget[transverseAxisEnd]) ||
+        isBetweenDestinationClipped(active[transverseAxisStart]) ||
+        isBetweenDestinationClipped(active[transverseAxisEnd])
       );
     })
     // Sort on the cross axis
     .sort((a: DroppableDimension, b: DroppableDimension) => {
-      const first: number = getKnownActive(a)[axis.crossAxisStart];
-      const second: number = getKnownActive(b)[axis.crossAxisStart];
+      const first: number = getKnownActive(a)[movementAxisStart];
+      const second: number = getKnownActive(b)[movementAxisStart];
 
       if (isMovingForward) {
         return first - second;
@@ -103,8 +121,8 @@ export default ({
         index: number,
         array: DroppableDimension[],
       ): boolean =>
-        getKnownActive(droppable)[axis.crossAxisStart] ===
-        getKnownActive(array[0])[axis.crossAxisStart],
+        getKnownActive(droppable)[movementAxisStart] ===
+        getKnownActive(array[0])[movementAxisStart],
     );
 
   // no possible candidates
@@ -124,10 +142,10 @@ export default ({
   const contains: DroppableDimension[] = candidates.filter(
     (droppable: DroppableDimension) => {
       const isWithinDroppable = isWithin(
-        getKnownActive(droppable)[axis.start],
-        getKnownActive(droppable)[axis.end],
+        getKnownActive(droppable)[transverseAxisStart],
+        getKnownActive(droppable)[transverseAxisEnd],
       );
-      return isWithinDroppable(pageBorderBoxCenter[axis.line]);
+      return isWithinDroppable(pageBorderBoxCenter[transverseAxisLine]);
     },
   );
 
@@ -140,7 +158,8 @@ export default ({
     // sort on the main axis and choose the first
     return contains.sort(
       (a: DroppableDimension, b: DroppableDimension): number =>
-        getKnownActive(a)[axis.start] - getKnownActive(b)[axis.start],
+        getKnownActive(a)[transverseAxisStart] -
+        getKnownActive(b)[transverseAxisStart],
     )[0];
   }
 
@@ -162,7 +181,10 @@ export default ({
 
       // They both have the same distance -
       // choose the one that is first on the main axis
-      return getKnownActive(a)[axis.start] - getKnownActive(b)[axis.start];
+      return (
+        getKnownActive(a)[transverseAxisStart] -
+        getKnownActive(b)[transverseAxisStart]
+      );
     },
   )[0];
 };

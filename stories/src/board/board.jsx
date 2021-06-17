@@ -23,8 +23,8 @@ const Container = styled.div`
   background-color: ${colors.B100};
   min-height: 100vh;
   /* like display:flex but will allow bleeding over the window width */
-  min-width: 100vw;
   display: inline-flex;
+  flex-direction: ${({ vertical }) => (vertical ? 'column' : 'row')};
 `;
 
 type Props = {|
@@ -33,6 +33,7 @@ type Props = {|
   isCombineEnabled?: boolean,
   containerHeight?: string,
   useClone?: boolean,
+  vertical?: boolean,
 |};
 
 type State = {|
@@ -123,6 +124,7 @@ export default class Board extends Component<Props, State> {
       useClone,
       isCombineEnabled,
       withScrollableColumns,
+      vertical,
     } = this.props;
 
     const board = (
@@ -134,7 +136,11 @@ export default class Board extends Component<Props, State> {
         isCombineEnabled={isCombineEnabled}
       >
         {(provided: DroppableProvided) => (
-          <Container ref={provided.innerRef} {...provided.droppableProps}>
+          <Container
+            ref={provided.innerRef}
+            vertical={vertical}
+            {...provided.droppableProps}
+          >
             {ordered.map((key: string, index: number) => (
               <Column
                 key={key}

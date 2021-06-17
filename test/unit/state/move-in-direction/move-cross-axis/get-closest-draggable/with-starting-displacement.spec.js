@@ -9,7 +9,7 @@ import type {
 import { horizontal, vertical } from '../../../../../../src/state/axis';
 import { toDraggableMap } from '../../../../../../src/state/dimension-structures';
 import getLiftEffect from '../../../../../../src/state/get-lift-effect';
-import getClosestDraggable from '../../../../../../src/state/move-in-direction/move-cross-axis/get-closest-draggable';
+import getClosestDraggable from '../../../../../../src/state/move-in-direction/move-axis/get-closest-draggable';
 import { negate, patch } from '../../../../../../src/state/position';
 import scrollViewport from '../../../../../../src/state/scroll-viewport';
 import { offsetByPosition } from '../../../../../../src/state/spacing';

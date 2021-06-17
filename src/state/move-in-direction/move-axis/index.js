@@ -10,7 +10,7 @@ import type {
   Viewport,
   LiftEffect,
 } from '../../../types';
-import getBestCrossAxisDroppable from './get-best-cross-axis-droppable';
+import getBestAxisDroppable from './get-best-axis-droppable';
 import getClosestDraggable from './get-closest-draggable';
 // import moveToNewDroppable from './move-to-new-droppable';
 import getDraggablesInsideDroppable from '../../get-draggables-inside-droppable';
@@ -19,6 +19,7 @@ import getPageBorderBoxCenter from '../../get-center-from-impact/get-page-border
 import moveToNewDroppable from './move-to-new-droppable';
 
 type Args = {|
+  isMovingOnMainAxis?: boolean,
   isMovingForward: boolean,
   // the current page center of the dragging item
   previousPageBorderBoxCenter: Position,
@@ -35,6 +36,7 @@ type Args = {|
 |};
 
 export default ({
+  isMovingOnMainAxis,
   isMovingForward,
   previousPageBorderBoxCenter,
   draggable,
@@ -46,7 +48,8 @@ export default ({
 }: Args): ?PublicResult => {
   // not considering the container scroll changes as container scrolling cancels a keyboard drag
 
-  const destination: ?DroppableDimension = getBestCrossAxisDroppable({
+  const destination: ?DroppableDimension = getBestAxisDroppable({
+    isMovingOnMainAxis,
     isMovingForward,
     pageBorderBoxCenter: previousPageBorderBoxCenter,
     source: isOver,

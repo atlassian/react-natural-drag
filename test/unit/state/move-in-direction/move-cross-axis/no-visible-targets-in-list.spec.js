@@ -7,7 +7,7 @@ import type {
   DraggableDimensionMap,
   DroppableDimensionMap,
 } from '../../../../../src/types';
-import moveCrossAxis from '../../../../../src/state/move-in-direction/move-cross-axis';
+import moveAxis from '../../../../../src/state/move-in-direction/move-axis';
 import getViewport from '../../../../../src/view/window/get-viewport';
 import {
   getPreset,
@@ -19,8 +19,8 @@ import getLiftEffect from '../../../../../src/state/get-lift-effect';
 const preset = getPreset();
 const viewport: Viewport = getViewport();
 
-// The functionality of move-cross-axis is covered by other files in this folder.
-// This spec file is directed any any logic in move-cross-axis/index.js
+// The functionality of move-axis is covered by other files in this folder.
+// This spec file is directed any any logic in move-axis/index.js
 
 it('should return null if there are draggables in a destination list but none are visible', () => {
   const custom: DroppableDimension = getDroppableDimension({
@@ -66,7 +66,8 @@ it('should return null if there are draggables in a destination list but none ar
     viewport: preset.viewport,
   });
 
-  const result: ?PublicResult = moveCrossAxis({
+  const result: ?PublicResult = moveAxis({
+    isMovingOnMainAxis: false,
     isMovingForward: true,
     previousPageBorderBoxCenter: preset.inHome1.page.borderBox.center,
     draggable: preset.inHome1,

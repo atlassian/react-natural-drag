@@ -11,7 +11,7 @@ import type {
   DragImpact,
 } from '../../types';
 import moveToNextPlace from './move-to-next-place';
-import moveCrossAxis from './move-cross-axis';
+import moveAxis from './move-axis';
 import whatIsDraggedOver from '../droppable/what-is-dragged-over';
 
 type Args = {|
@@ -59,26 +59,32 @@ export default ({ state, type }: Args): ?PublicResult => {
     state.current.page.borderBoxCenter;
   const { draggables, droppables } = state.dimensions;
 
-  return isMovingOnMainAxis
-    ? moveToNextPlace({
-        isMovingForward,
-        previousPageBorderBoxCenter,
-        draggable,
-        destination: isOver,
-        draggables,
-        viewport: state.viewport,
-        previousClientSelection: state.current.client.selection,
-        previousImpact: state.impact,
-        afterCritical: state.afterCritical,
-      })
-    : moveCrossAxis({
-        isMovingForward,
-        previousPageBorderBoxCenter,
-        draggable,
-        isOver,
-        draggables,
-        droppables,
-        viewport: state.viewport,
-        afterCritical: state.afterCritical,
-      });
+  if (isMovingOnMainAxis) {
+    const moveToNextPlaceResult = moveToNextPlace({
+      isMovingForward,
+      previousPageBorderBoxCenter,
+      draggable,
+      destination: isOver,
+      draggables,
+      viewport: state.viewport,
+      previousClientSelection: state.current.client.selection,
+      previousImpact: state.impact,
+      afterCritical: state.afterCritical,
+    });
+    if (moveToNextPlaceResult) {
+      return moveToNextPlaceResult;
+    }
+  }
+
+  return moveAxis({
+    isMovingOnMainAxis,
+    isMovingForward,
+    previousPageBorderBoxCenter,
+    draggable,
+    isOver,
+    draggables,
+    droppables,
+    viewport: state.viewport,
+    afterCritical: state.afterCritical,
+  });
 };

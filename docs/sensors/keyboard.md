@@ -13,21 +13,24 @@ Once a drag is started the following keyboard shortcuts can be used:
 - **spacebar** <kbd>space</kbd> - drop the `<Draggable />`
 - **escape** <kbd>esc</kbd> - cancel the drag
 
+### Moving a draggable within a droppable
+
 The following commands are also available but they depend on the `type` of `<Droppable />` that the `<Draggable />` is _currently_ in:
 
-### Within a vertical list
+#### Within a vertical list
 
 - **Up arrow** <kbd>↑</kbd> - move a `<Draggable />` upwards in a `<Droppable />`
 - **Down arrow** <kbd>↓</kbd> - move a `<Draggable />` downwards in a `<Droppable />`
-- **Right arrow** <kbd>→</kbd> - move a `<Draggable />` to a `<Droppable />` to the _right_ of the current `<Droppable />` (move to new list)
-- **Left arrow** <kbd>←</kbd> - move a `<Draggable />` to a `<Droppable />` to the _left_ of the current `<Droppable />` (move to new list)
 
-### Within a horizontal list
+#### Within a horizontal list
 
-- **Up arrow** <kbd>↑</kbd> - move a `<Draggable />` to a `<Droppable />` to _above_ the current `<Droppable />` (move to new list)
-- **Down arrow** <kbd>↓</kbd> - move a `<Draggable />` to a `<Droppable />` to _below_ the current `<Droppable />` (move to new list)
 - **Right arrow** <kbd>→</kbd> - move a `<Draggable />` to the _right_ in the current `<Droppable />`
 - **Left arrow** <kbd>←</kbd> - move a `<Draggable />` to the _left_ in the current `<Droppable />`
+
+### Moving a draggable to another droppable
+
+- **Arrows** <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> <kbd>←</kbd> - Move draggables to the nearest droppable.  
+(If the desired destination draggable exists in the same dimension that the draggables are oriented, the draggable must first reach the outermost position before it can be moved to the droppable.)
 
 During a drag the following standard keyboard events have their default behaviour prevented (through `event.preventDefault()`) to avoid a bad experience:
 

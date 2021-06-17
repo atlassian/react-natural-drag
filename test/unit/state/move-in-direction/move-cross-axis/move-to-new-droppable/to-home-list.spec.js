@@ -10,7 +10,7 @@ import { invariant } from '../../../../../../src/invariant';
 import { vertical, horizontal } from '../../../../../../src/state/axis';
 import getDisplacedBy from '../../../../../../src/state/get-displaced-by';
 import getLiftEffect from '../../../../../../src/state/get-lift-effect';
-import moveToNewDroppable from '../../../../../../src/state/move-in-direction/move-cross-axis/move-to-new-droppable';
+import moveToNewDroppable from '../../../../../../src/state/move-in-direction/move-axis/move-to-new-droppable';
 import { getPreset } from '../../../../../util/dimension';
 import { getForcedDisplacement } from '../../../../../util/impact';
 import { emptyGroups } from '../../../../../../src/state/no-impact';
