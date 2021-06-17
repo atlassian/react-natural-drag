@@ -28,6 +28,10 @@ export const droppable = (() => {
   };
 })();
 
+export const interactiveElement = {
+  base: `${prefix}-is-interactive-element`,
+};
+
 export const placeholder = {
   contextId: `${prefix}-placeholder-context-id`,
 };

@@ -1,5 +1,6 @@
 // @flow
 import isHtmlElement from '../is-type-of-element/is-html-element';
+import { interactiveElement } from '../data-attributes';
 
 export type TagNameMap = {
   [tagName: string]: true,
@@ -40,6 +41,12 @@ function isAnInteractiveElement(parent: Element, current: ?Element) {
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
   const attribute: ?string = current.getAttribute('contenteditable');
   if (attribute === 'true' || attribute === '') {
+    return true;
+  }
+
+  const dataAttributeName: string = interactiveElement.base;
+  const dataAttribute: ?string = current.getAttribute(dataAttributeName);
+  if (dataAttribute === 'true' || dataAttribute === '') {
     return true;
   }
 
