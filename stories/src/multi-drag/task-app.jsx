@@ -5,7 +5,7 @@ import { DragDropContext } from '../../../src';
 import initial from './data';
 import Column from './column';
 import type { Result as ReorderResult } from './utils';
-import { mutliDragAwareReorder, multiSelectTo as multiSelect } from './utils';
+import { multiDragAwareReorder, multiSelectTo as multiSelect } from './utils';
 import type { DragStart, DropResult, DraggableLocation } from '../../../src';
 import type { Task, Id } from '../types';
 import type { Entities } from './types';
@@ -72,7 +72,7 @@ export default class TaskApp extends Component<*, State> {
       return;
     }
 
-    const processed: ReorderResult = mutliDragAwareReorder({
+    const processed: ReorderResult = multiDragAwareReorder({
       entities: this.state.entities,
       selectedTaskIds: this.state.selectedTaskIds,
       source,
