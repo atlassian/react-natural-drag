@@ -3,6 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import styled from '@emotion/styled';
 import QuoteApp from './src/vertical/quote-app';
+import QuoteAppTrap from './src/vertical/quote-app-trap';
 import { quotes, getQuotes } from './src/data';
 import { grid } from './src/constants';
 
@@ -42,6 +43,16 @@ storiesOf('single vertical list', module)
   ))
   .add('window scrolling and a Droppable scroll container', () => (
     <QuoteApp
+      initial={data.medium}
+      listStyle={{
+        overflowY: 'scroll',
+        maxHeight: '120vh',
+        position: 'relative',
+      }}
+    />
+  ))
+  .add('trapped drag', () => (
+    <QuoteAppTrap
       initial={data.medium}
       listStyle={{
         overflowY: 'scroll',
