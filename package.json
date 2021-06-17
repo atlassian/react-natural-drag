@@ -112,7 +112,7 @@
     "jest": "25.5.4",
     "jest-axe": "3.5.0",
     "jest-junit": "10.0.0",
-    "jest-watch-typeahead": "0.6.1",
+    "jest-watch-typeahead": "0.6.4",
     "lighthouse": "5.6.0",
     "markdown-it": "10.0.0",
     "prettier": "2.0.4",
