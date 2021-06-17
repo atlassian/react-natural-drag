@@ -21,6 +21,7 @@ type Props = {|
   // See our [sensor api](/docs/sensors/sensor-api.md)
   sensors?: Sensor[],
   enableDefaultSensors?: ?boolean,
+  shouldStartCapture?: (draggableId: string) => boolean,
 |};
 
 // Reset any context that gets persisted across server side renders
@@ -46,6 +47,7 @@ export default function DragDropContext(props: Props) {
           dragHandleUsageInstructions={dragHandleUsageInstructions}
           enableDefaultSensors={props.enableDefaultSensors}
           sensors={props.sensors}
+          shouldStartCapture={props.shouldStartCapture}
           onBeforeCapture={props.onBeforeCapture}
           onBeforeDragStart={props.onBeforeDragStart}
           onDragStart={props.onDragStart}

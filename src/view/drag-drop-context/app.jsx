@@ -24,6 +24,7 @@ import type {
   DraggableId,
   State,
   Responders,
+  Validators,
   Announce,
   Sensor,
   ElementId,
@@ -51,6 +52,7 @@ import useSensorMarshal from '../use-sensor-marshal/use-sensor-marshal';
 
 export type Props = {|
   ...Responders,
+  ...Validators,
   contextId: string,
   setCallbacks: SetAppCallbacks,
   nonce?: string,
@@ -65,6 +67,9 @@ export type Props = {|
   dragHandleUsageInstructions: string,
 |};
 
+const createValidators = (props: Props): Validators => ({
+  shouldStartCapture: props.shouldStartCapture,
+});
 const createResponders = (props: Props): Responders => ({
   onBeforeCapture: props.onBeforeCapture,
   onBeforeDragStart: props.onBeforeDragStart,
@@ -99,6 +104,10 @@ export default function App(props: Props) {
 
   const getResponders: () => Responders = useCallback(() => {
     return createResponders(lastPropsRef.current);
+  }, [lastPropsRef]);
+
+  const getValidators: () => Validators = useCallback(() => {
+    return createValidators(lastPropsRef.current);
   }, [lastPropsRef]);
 
   const announce: Announce = useAnnouncer(contextId);
@@ -243,6 +252,7 @@ export default function App(props: Props) {
     contextId,
     store,
     registry,
+    getValidators,
     customSensors: sensors,
     // default to 'true' unless 'false' is explicitly passed
     enableDefaultSensors: props.enableDefaultSensors !== false,

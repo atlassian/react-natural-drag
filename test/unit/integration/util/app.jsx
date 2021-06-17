@@ -54,6 +54,7 @@ export const defaultItemRender: RenderItem = (item: Item) => (
 );
 
 type Props = {|
+  shouldStartCapture?: Function,
   onBeforeCapture?: Function,
   onBeforeDragStart?: Function,
   onDragStart?: Function,
@@ -88,6 +89,7 @@ function withDefaultBool(value: ?boolean, defaultValue: boolean) {
 
 export default function App(props: Props) {
   const [items, setItems] = useState(() => props.items || getItems());
+  const shouldStartCapture = props.shouldStartCapture || (() => true);
   const onBeforeCapture = props.onBeforeCapture || noop;
   const onBeforeDragStart = props.onBeforeDragStart || noop;
   const onDragStart = props.onDragStart || noop;
@@ -135,6 +137,7 @@ export default function App(props: Props) {
   return (
     <main>
       <DragDropContext
+        shouldStartCapture={shouldStartCapture}
         onBeforeCapture={onBeforeCapture}
         onBeforeDragStart={onBeforeDragStart}
         onDragStart={onDragStart}

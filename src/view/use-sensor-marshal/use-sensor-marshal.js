@@ -8,7 +8,9 @@ import type {
   ContextId,
   State,
   Sensor,
+  Validators,
   StopDragOptions,
+  ShouldStartCaptureValidator,
   PreDragActions,
   FluidDragActions,
   SnapDragActions,
@@ -107,6 +109,7 @@ type CanStartArgs = {|
   lockAPI: LockAPI,
   registry: Registry,
   store: Store,
+  getValidators: () => Validators,
   draggableId: DraggableId,
 |};
 
@@ -114,6 +117,7 @@ function canStart({
   lockAPI,
   store,
   registry,
+  getValidators,
   draggableId,
 }: CanStartArgs): boolean {
   // lock is already claimed - cannot start
@@ -138,6 +142,13 @@ function canStart({
     return false;
   }
 
+  // shouldStartCapture return false - cannot start
+  const validators = getValidators();
+  const fn: ?ShouldStartCaptureValidator = validators.shouldStartCapture;
+  if (fn) {
+    return fn(draggableId);
+  }
+
   return true;
 }
 
@@ -146,6 +157,7 @@ type TryStartArgs = {|
   contextId: ContextId,
   registry: Registry,
   store: Store,
+  getValidators: () => Validators,
   draggableId: DraggableId,
   forceSensorStop: ?() => void,
   sourceEvent: ?Event,
@@ -156,6 +168,7 @@ function tryStart({
   contextId,
   store,
   registry,
+  getValidators,
   draggableId,
   forceSensorStop,
   sourceEvent,
@@ -164,6 +177,7 @@ function tryStart({
     lockAPI,
     store,
     registry,
+    getValidators,
     draggableId,
   });
 
@@ -353,6 +367,7 @@ type SensorMarshalArgs = {|
   contextId: ContextId,
   registry: Registry,
   store: Store,
+  getValidators: () => Validators,
   customSensors: ?(Sensor[]),
   enableDefaultSensors: boolean,
 |};
@@ -368,6 +383,7 @@ export default function useSensorMarshal({
   contextId,
   store,
   registry,
+  getValidators,
   customSensors,
   enableDefaultSensors,
 }: SensorMarshalArgs) {
@@ -413,10 +429,11 @@ export default function useSensorMarshal({
         lockAPI,
         registry,
         store,
+        getValidators,
         draggableId,
       });
     },
-    [lockAPI, registry, store],
+    [lockAPI, registry, store, getValidators],
   );
 
   const tryGetLock: TryGetLock = useCallback(
@@ -430,12 +447,13 @@ export default function useSensorMarshal({
         registry,
         contextId,
         store,
+        getValidators,
         draggableId,
         forceSensorStop: forceStop,
         sourceEvent:
           options && options.sourceEvent ? options.sourceEvent : null,
       }),
-    [contextId, lockAPI, registry, store],
+    [contextId, lockAPI, registry, store, getValidators],
   );
 
   const findClosestDraggableId = useCallback(

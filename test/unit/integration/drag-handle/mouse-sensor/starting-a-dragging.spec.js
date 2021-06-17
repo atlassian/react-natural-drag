@@ -166,3 +166,19 @@ it('should not start a drag if a modifier key was used while pressing the mouse 
     expect(isDragging(handle)).toBe(false);
   });
 });
+
+it('should not start a drag if shouldStartCapture return false', async () => {
+  const { getByText } = render(<App shouldStartCapture={() => false} />);
+  const handle: HTMLElement = getByText('item: 0');
+  const mouseDown: MouseEvent = createEvent.mouseDown(handle);
+  const mouseMove: MouseEvent = createEvent.mouseMove(handle, {
+    clientX: 0,
+    clientY: sloppyClickThreshold,
+  });
+
+  fireEvent(handle, mouseDown);
+
+  fireEvent(handle, mouseMove);
+
+  expect(isDragging(handle)).toBe(false);
+});
