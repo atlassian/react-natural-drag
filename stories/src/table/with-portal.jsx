@@ -279,10 +279,7 @@ export default class TableApp extends Component<AppProps, AppState> {
     });
 
     // dropped outside the list
-    if (
-      !result.destination ||
-      result.destination.index === result.source.index
-    ) {
+    if (!result.destination) {
       return;
     }
 
