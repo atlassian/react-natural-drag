@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 import App, { type RenderItem } from '../util/app';
 import { type DraggableStateSnapshot } from '../../../../src';

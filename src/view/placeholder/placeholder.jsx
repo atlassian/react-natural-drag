@@ -1,5 +1,6 @@
 // @flow
-import React, { useState, useRef, useEffect, type Node } from 'react';
+import * as React from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useCallback } from 'use-memo-one';
 import type { Spacing } from 'css-box-model';
 import type {
@@ -114,7 +115,7 @@ const getStyle = ({
   };
 };
 
-function Placeholder(props: Props): Node {
+function Placeholder(props: Props): React.Node {
   const animateOpenTimerRef = useRef<?TimeoutID>(null);
 
   const tryClearAnimateOpenTimer = useCallback(() => {

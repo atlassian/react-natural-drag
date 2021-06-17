@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Board from './src/board/board';
 import { authorQuoteMap, generateQuoteMap } from './src/data';

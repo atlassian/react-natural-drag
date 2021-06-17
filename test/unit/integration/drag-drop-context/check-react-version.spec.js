@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import checkReactVersion from '../../../../src/view/drag-drop-context/check-react-version';
 import { peerDependencies } from '../../../../package.json';
 

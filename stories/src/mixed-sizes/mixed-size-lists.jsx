@@ -1,7 +1,8 @@
 // @flow
 import { colors } from '@atlaskit/theme';
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useMemo } from 'use-memo-one';
 import {
   DragDropContext,

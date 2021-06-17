@@ -1,5 +1,6 @@
 // @flow
-import React, { Component, Fragment } from 'react';
+import * as React from 'react';
+import { Component, Fragment } from 'react';
 import styled from '@emotion/styled';
 import { colors } from '@atlaskit/theme';
 import { DragDropContext, Droppable, Draggable } from '../../../src';

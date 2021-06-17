@@ -1,5 +1,6 @@
 // @flow
-import React, { useRef, useCallback } from 'react';
+import * as React from 'react';
+import { useRef, useCallback } from 'react';
 import { type Spacing, type Rect } from 'css-box-model';
 import { mount, type ReactWrapper } from 'enzyme';
 import { useMemo } from 'use-memo-one';

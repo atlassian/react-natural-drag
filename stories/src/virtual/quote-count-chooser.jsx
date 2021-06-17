@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { css } from '@emotion/core';
 import { colors } from '@atlaskit/theme';
 import { grid, borderRadius } from '../constants';

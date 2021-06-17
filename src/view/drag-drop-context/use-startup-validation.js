@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { peerDependencies } from '../../../package.json';
 import checkReactVersion from './check-react-version';
 import checkDoctype from './check-doctype';

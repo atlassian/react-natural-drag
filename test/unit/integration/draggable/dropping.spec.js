@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { type Position } from 'css-box-model';
 import App, { type RenderItem } from '../util/app';

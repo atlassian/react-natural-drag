@@ -1,5 +1,6 @@
 // @flow
-import React, { Component, type Node } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 import { colors } from '@atlaskit/theme';
@@ -63,7 +64,7 @@ class PortalAwareItem extends Component<ItemProps> {
 
     const usePortal: boolean = snapshot.isDragging;
 
-    const child: Node = (
+    const child: React.Node = (
       <SimpleQuote
         ref={provided.innerRef}
         {...provided.draggableProps}

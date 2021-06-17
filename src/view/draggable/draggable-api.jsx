@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import type { DraggableId } from '../../types';
 import type { PublicOwnProps, PrivateOwnProps } from './draggable-types';
 import ConnectedDraggable from './connected-draggable';

@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import { warning, error } from '../../dev-warning';
 import { noop } from '../../empty';
 import bindEvents from '../event-bindings/bind-events';
@@ -7,7 +7,7 @@ import { RbdInvariant } from '../../invariant';
 import type { AppCallbacks } from './drag-drop-context-types';
 
 type Props = {|
-  children: (setCallbacks: (callbacks: AppCallbacks) => void) => Node,
+  children: (setCallbacks: (callbacks: AppCallbacks) => void) => React.Node,
 |};
 
 // Lame that this is not in flow

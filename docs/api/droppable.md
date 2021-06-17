@@ -220,15 +220,15 @@ When a user drags over, or stops dragging over, a `<Droppable />` we re-render t
 Here is an example of how you could do this using `class` components:
 
 ```js
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class Student extends Component<{ student: Person }> {
+class Student extends React.Component<{ student: Person }> {
   render() {
     // Renders out a draggable student
   }
 }
 
-class InnerList extends Component<{ students: Person[] }> {
+class InnerList extends React.Component<{ students: Person[] }> {
   // do not re-render if the students list has not changed
   shouldComponentUpdate(nextProps: Props) {
     if (this.props.students === nextProps.students) {
@@ -246,7 +246,7 @@ class InnerList extends Component<{ students: Person[] }> {
   }
 }
 
-class Students extends Component<{ students: Person[] }> {
+class Students extends React.Component<{ students: Person[] }> {
   render() {
     return (
       <Droppable droppableId="list">
@@ -271,7 +271,7 @@ class Students extends Component<{ students: Person[] }> {
 Here is an example of how you could do this using `function` components:
 
 ```js
-import React from 'react';
+import * as React from 'react';
 
 function Student (props: { student: Person }) {
   // Renders out a draggable student

@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import type { ReactWrapper } from 'enzyme';
 import type { Provided } from '../../../../src/view/droppable/droppable-types';
 import {

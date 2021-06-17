@@ -1,5 +1,6 @@
 // @flow
-import React, { useState, useRef } from 'react';
+import * as React from 'react';
+import { useState, useRef } from 'react';
 import { render, act } from '@testing-library/react';
 import { invariant } from '../../../../../src/invariant';
 import { isDragging, getOffset } from '../../util/helpers';

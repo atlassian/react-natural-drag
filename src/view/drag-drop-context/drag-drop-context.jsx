@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import type { Responders, ContextId, Sensor } from '../../types';
 import ErrorBoundary from './error-boundary';
 import preset from '../../screen-reader-message-preset';
@@ -12,7 +12,7 @@ import { reset as resetUniqueIds } from '../use-unique-id';
 type Props = {|
   ...Responders,
   // We do not technically need any children for this component
-  children: Node | null,
+  children: React.Node | null,
   // Read out by screen readers when focusing on a drag handle
   dragHandleUsageInstructions?: string,
   // Used for strict content security policies

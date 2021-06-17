@@ -43,7 +43,7 @@ type Props = {|
 ### Using a `class` component
 
 ```js
-import React from 'react';
+import * as React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 class App extends React.Component {
@@ -84,7 +84,7 @@ class App extends React.Component {
 ### Using a `function` component
 
 ```js
-import React from 'react';
+import * as React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 function App() {

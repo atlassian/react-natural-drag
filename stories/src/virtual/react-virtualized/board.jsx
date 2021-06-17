@@ -1,5 +1,6 @@
 // @flow
-import React, { useReducer } from 'react';
+import * as React from 'react';
+import { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import 'react-virtualized/styles.css';
 import { List } from 'react-virtualized';

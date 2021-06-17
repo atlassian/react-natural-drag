@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render, fireEvent, createEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { invariant } from '../../../../../src/invariant';

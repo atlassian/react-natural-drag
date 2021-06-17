@@ -1,5 +1,6 @@
 // @flow
-import React, { Component, type Node } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { render } from '@testing-library/react';
 import { DragDropContext } from '../../../../src';
 import { getPreset } from '../../../util/dimension';
@@ -34,7 +35,7 @@ class Person extends Component<{ name: string, provided: Provided }> {
 
 type Props = {|
   currentUser: string,
-  children: (currentUser: string, dragProvided: Provided) => Node,
+  children: (currentUser: string, dragProvided: Provided) => React.Node,
 |};
 
 function App({ currentUser, children }: Props) {

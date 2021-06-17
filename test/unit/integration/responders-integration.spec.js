@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { getRect, type Rect } from 'css-box-model';
 import { invariant } from '../../../src/invariant';

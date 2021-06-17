@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable react/no-multi-comp */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { render } from '@testing-library/react';
 import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';

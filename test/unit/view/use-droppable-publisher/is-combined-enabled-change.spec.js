@@ -1,6 +1,6 @@
 // @flow
 import { mount } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import type { DimensionMarshal } from '../../../../src/state/dimension-marshal/dimension-marshal-types';
 import { getMarshalStub } from '../../../util/dimension-marshal';
 import { setViewport } from '../../../util/viewport';

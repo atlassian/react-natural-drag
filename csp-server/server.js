@@ -1,6 +1,6 @@
 // @flow
 import express from 'express';
-import React from 'react';
+import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { resolve } from 'path';
 import App from './app';

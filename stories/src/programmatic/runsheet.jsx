@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable no-console */
-import React, { useState, useCallback, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import type { Quote } from '../types';
 import type {
   DropResult,

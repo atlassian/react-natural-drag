@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { WithoutMemo } from '../../../../../src/view/placeholder/placeholder';
 import type { Props } from '../../../../../src/view/placeholder/placeholder';
 

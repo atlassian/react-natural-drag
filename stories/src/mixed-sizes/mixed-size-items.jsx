@@ -1,5 +1,6 @@
 // @flow
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { quotes as initial } from '../data';
 import type { Quote } from '../types';
 import QuoteList from '../primatives/quote-list';

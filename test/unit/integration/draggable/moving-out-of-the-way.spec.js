@@ -1,6 +1,6 @@
 // @flow
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 import App from '../util/app';
 import expandedMouse from '../util/expanded-mouse';
 import {

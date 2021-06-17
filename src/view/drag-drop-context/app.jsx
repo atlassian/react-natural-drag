@@ -1,5 +1,6 @@
 // @flow
-import React, { useEffect, useRef, type Node } from 'react';
+import * as React from 'react';
+import { useEffect, useRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { Provider } from 'react-redux';
 import { useMemo, useCallback } from 'use-memo-one';
@@ -55,7 +56,7 @@ export type Props = {|
   setCallbacks: SetAppCallbacks,
   nonce?: string,
   // we do not technically need any children for this component
-  children: Node | null,
+  children: React.Node | null,
 
   // sensors
   sensors?: Sensor[],

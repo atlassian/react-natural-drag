@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import type { InOutAnimationMode } from '../../types';
 
 export type AnimateProvided = {|
@@ -11,7 +11,7 @@ export type AnimateProvided = {|
 type Props = {|
   on: mixed,
   shouldAnimate: boolean,
-  children: (provided: AnimateProvided) => Node,
+  children: (provided: AnimateProvided) => React.Node,
 |};
 
 type State = {|

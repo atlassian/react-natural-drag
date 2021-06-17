@@ -1,7 +1,7 @@
 // @flow
 import type { Position } from 'css-box-model';
 import { mount } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import { invariant } from '../../../../src/invariant';
 import type { DimensionMarshal } from '../../../../src/state/dimension-marshal/dimension-marshal-types';
 import type { DroppableDimension } from '../../../../src/types';

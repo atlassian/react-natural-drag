@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable react/sort-comp */
-import React, { Component, Fragment, type Node } from 'react';
+import * as React from 'react';
+import { Component, Fragment } from 'react';
 import styled from '@emotion/styled';
 import { colors } from '@atlaskit/theme';
 import {
@@ -43,7 +44,7 @@ const Cell = styled.td`
 `;
 
 type TableCellProps = {|
-  children: Node,
+  children: React.Node,
   isDragOccurring: boolean,
   isDragging: boolean,
   cellId: string,
@@ -200,7 +201,7 @@ const IsDraggingContext = React.createContext<boolean>(false);
 class TableRow extends Component<TableRowProps> {
   render() {
     const { snapshot, quote, provided } = this.props;
-    const child: Node = (
+    const child: React.Node = (
       <IsDraggingContext.Consumer>
         {(isDragging: boolean) => (
           <Row

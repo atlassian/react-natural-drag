@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import * as keyCodes from '../../../src/view/key-codes';
 import type {

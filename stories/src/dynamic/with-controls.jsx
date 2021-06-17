@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import styled from '@emotion/styled';
 import QuoteList from '../primatives/quote-list';
 import { DragDropContext } from '../../../src';

@@ -1,5 +1,6 @@
 // @flow
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { FixedSizeList as List, areEqual } from 'react-window';
 import type { Quote } from '../../types';
 import {

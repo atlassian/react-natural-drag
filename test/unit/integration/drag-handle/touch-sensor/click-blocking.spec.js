@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, createEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import App from '../../util/app';

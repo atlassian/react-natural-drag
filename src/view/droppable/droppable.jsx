@@ -1,7 +1,8 @@
 // @flow
 import ReactDOM from 'react-dom';
 import { useMemo, useCallback } from 'use-memo-one';
-import React, { useRef, useContext, type Node } from 'react';
+import * as React from 'react';
+import { useRef, useContext } from 'react';
 import { invariant } from '../../invariant';
 import type { DraggableId } from '../../types';
 import type { Props, Provided } from './droppable-types';
@@ -89,7 +90,7 @@ export default function Droppable(props: Props) {
     getDroppableRef,
   });
 
-  const placeholder: Node = (
+  const placeholder: React.Node = (
     <AnimateInOut
       on={props.placeholder}
       shouldAnimate={props.shouldAnimatePlaceholder}
@@ -132,13 +133,13 @@ export default function Droppable(props: Props) {
     [droppableId, isUsingCloneFor, type],
   );
 
-  function getClone(): ?Node {
+  function getClone(): ?React.Node {
     if (!useClone) {
       return null;
     }
     const { dragging, render } = useClone;
 
-    const node: Node = (
+    const node: React.Node = (
       <PrivateDraggable
         draggableId={dragging.draggableId}
         index={dragging.source.index}

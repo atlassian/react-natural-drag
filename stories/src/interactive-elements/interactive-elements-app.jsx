@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import styled from '@emotion/styled';
 import { colors } from '@atlaskit/theme';
 import { DragDropContext, Droppable, Draggable } from '../../../src';
@@ -13,7 +13,7 @@ import type {
 
 type ItemType = {|
   id: string,
-  component: Node,
+  component: React.Node,
 |};
 
 const initial: ItemType[] = [

@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable no-console */
-import React, { useRef, createRef, useState, useCallback } from 'react';
+import * as React from 'react';
+import { useRef, createRef, useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 import type { Quote } from '../types';
 import type {

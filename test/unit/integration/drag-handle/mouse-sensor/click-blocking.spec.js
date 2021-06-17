@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import * as keyCodes from '../../../../../src/view/key-codes';
 import { sloppyClickThreshold } from '../../../../../src/view/use-sensor-marshal/sensors/use-mouse-sensor';

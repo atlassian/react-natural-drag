@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { getRect } from 'css-box-model';
 // import { mount, type ReactWrapper } from 'enzyme';
 import { render, fireEvent } from '@testing-library/react';

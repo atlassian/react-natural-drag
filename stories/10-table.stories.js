@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import WithDimensionLocking from './src/table/with-dimension-locking';
 import WithFixedColumns from './src/table/with-fixed-columns';

@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable react/no-multi-comp */
 import { mount } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import type { DroppableDescriptor } from '../../../../src/types';
 import forceUpdate from '../../../util/force-update';
 import { preset, ScrollableItem, WithAppContext } from './util/shared';

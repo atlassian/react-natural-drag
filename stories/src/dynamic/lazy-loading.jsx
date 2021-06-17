@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import QuoteList from '../primatives/quote-list';
 import { DragDropContext } from '../../../src';
 import type {

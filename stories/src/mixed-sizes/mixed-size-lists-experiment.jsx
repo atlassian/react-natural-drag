@@ -1,5 +1,6 @@
 // @flow
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import * as React from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { getBox, type Position, type BoxModel } from 'css-box-model';
 import styled from '@emotion/styled';
 import { colors } from '@atlaskit/theme';

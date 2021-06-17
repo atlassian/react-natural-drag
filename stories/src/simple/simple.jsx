@@ -2,7 +2,8 @@
 // It matches
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from '../../../src';
 
 // fake data generator

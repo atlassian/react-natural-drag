@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 import type { SensorAPI, Sensor } from '../../../../../src/types';
 import { forEachSensor, type Control, simpleLift } from '../../util/controls';

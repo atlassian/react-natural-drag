@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
 // @flow
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useCallback } from 'use-memo-one';
 import type { Quote } from '../types';

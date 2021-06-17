@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import FunnyDrop from './src/custom-drop/funny-drop';
 import NoDrop from './src/custom-drop/no-drop';

@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import WithFixedSidebar from './src/fixed-list/fixed-sidebar';
 

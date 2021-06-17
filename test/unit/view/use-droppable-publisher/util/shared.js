@@ -1,7 +1,8 @@
 // @flow
 /* eslint-disable react/no-multi-comp */
 import { createBox, type Spacing, type BoxModel } from 'css-box-model';
-import React, { useMemo, type Node } from 'react';
+import * as React from 'react';
+import { useMemo } from 'react';
 import useDroppablePublisher from '../../../../../src/view/use-droppable-publisher/use-droppable-publisher';
 import { getComputedSpacing, getPreset } from '../../../../util/dimension';
 import { type DimensionMarshal } from '../../../../../src/state/dimension-marshal/dimension-marshal-types';
@@ -77,7 +78,7 @@ export const descriptor: DroppableDescriptor = preset.home.descriptor;
 type WithAppContextProps = {|
   marshal?: DimensionMarshal,
   registry: Registry,
-  children: Node,
+  children: React.Node,
 |};
 
 const focusMarshal = {

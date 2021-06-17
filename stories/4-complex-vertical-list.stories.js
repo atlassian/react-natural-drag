@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import NestedQuoteApp from './src/vertical-nested/quote-app';
 import GroupedQuoteApp from './src/vertical-grouped/quote-app';

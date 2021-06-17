@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { invariant } from '../../../../src/invariant';
 import * as attributes from '../../../../src/view/data-attributes';

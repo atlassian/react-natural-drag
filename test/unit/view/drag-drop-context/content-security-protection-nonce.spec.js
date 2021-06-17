@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { mount, type ReactWrapper } from 'enzyme';
 import DragDropContext from '../../../../src/view/drag-drop-context';
 import { resetServerContext } from '../../../../src';

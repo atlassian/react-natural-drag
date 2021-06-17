@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import { mount, type ReactWrapper } from 'enzyme';
 import type { ContextId } from '../../../../src/types';
 import useStyleMarshal from '../../../../src/view/use-style-marshal';
@@ -15,7 +15,7 @@ const getMock = () => jest.fn().mockImplementation(() => null);
 type Props = {|
   contextId: ContextId,
   nonce?: string,
-  children: (marshal: StyleMarshal) => Node,
+  children: (marshal: StyleMarshal) => React.Node,
 |};
 
 function WithMarshal(props: Props) {

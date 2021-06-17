@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { colors } from '@atlaskit/theme';

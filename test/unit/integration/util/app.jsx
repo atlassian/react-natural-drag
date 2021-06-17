@@ -1,5 +1,6 @@
 // @flow
-import React, { useState, type Node } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import {
   DragDropContext,
   Droppable,
@@ -31,7 +32,7 @@ export type RenderItem = (
   provided: DraggableProvided,
   snapshot: DraggableStateSnapshot,
   rubric: DraggableRubric,
-) => Node;
+) => React.Node;
 
 export const defaultItemRender: RenderItem = (item: Item) => (
   provided: DraggableProvided,
@@ -60,7 +61,7 @@ type Props = {|
   onDragUpdate?: Function,
   onDragEnd?: Function,
   items?: Item[],
-  anotherChild?: Node,
+  anotherChild?: React.Node,
   renderItem?: RenderItem,
 
   // droppable
@@ -126,7 +127,7 @@ export default function App(props: Props) {
       provided: DraggableProvided,
       snapshot: DraggableStateSnapshot,
       rubric: DraggableRubric,
-    ): Node {
+    ): React.Node {
       const item: Item = items[rubric.source.index];
       return render(item)(provided, snapshot, rubric);
     };

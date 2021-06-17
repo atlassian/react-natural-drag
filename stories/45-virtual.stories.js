@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import ReactWindowList from './src/virtual/react-window/list';
 import ReactVirtualizedList from './src/virtual/react-virtualized/list';

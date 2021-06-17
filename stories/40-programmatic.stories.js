@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import WithControls from './src/programmatic/with-controls';
 import Runsheet from './src/programmatic/runsheet';

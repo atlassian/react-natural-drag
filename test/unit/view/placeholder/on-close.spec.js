@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { mount, type ReactWrapper } from 'enzyme';
 import Placeholder from './util/placeholder-with-class';
 import { expectIsFull } from './util/expect';

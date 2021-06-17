@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { mount, type ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Placeholder from './util/placeholder-with-class';

@@ -1,5 +1,6 @@
 // @flow
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'react-virtualized/styles.css';
 import { WindowScroller, List } from 'react-virtualized';

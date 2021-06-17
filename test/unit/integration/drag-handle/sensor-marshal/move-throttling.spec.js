@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import type { Position } from 'css-box-model';
 import { render } from '@testing-library/react';
 import { invariant } from '../../../../../src/invariant';

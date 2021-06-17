@@ -1,5 +1,6 @@
 // @flow
-import React, { Component, type Node } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import memoizeOne from 'memoize-one';
 import styled from '@emotion/styled';
@@ -51,7 +52,7 @@ export default class Task extends Component<Props> {
               provided: DraggableProvided,
               snapshot: DraggableStateSnapshot,
             ) => {
-              const child: Node = (
+              const child: React.Node = (
                 <Container
                   ref={provided.innerRef}
                   isDragging={snapshot.isDragging}

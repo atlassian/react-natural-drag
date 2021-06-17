@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import styled from '@emotion/styled';
 import { colors } from '@atlaskit/theme';
@@ -65,7 +65,7 @@ class Sidebar extends React.Component<ListProps> {
                   ) => {
                     const usePortal: boolean = draggableSnapshot.isDragging;
 
-                    const child: Node = (
+                    const child: React.Node = (
                       <QuoteItem
                         quote={quote}
                         isDragging={draggableSnapshot.isDragging}

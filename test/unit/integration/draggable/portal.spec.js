@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from '@testing-library/react';
 import type {
@@ -22,7 +22,7 @@ const renderItem = (item: Item) => (
   provided: DraggableProvided,
   snapshot: DraggableStateSnapshot,
 ) => {
-  const child: Node = (
+  const child: React.Node = (
     <div
       ref={provided.innerRef}
       {...provided.draggableProps}

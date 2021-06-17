@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { mount } from 'enzyme';
 import type { Provided } from '../../../../src/view/droppable/droppable-types';
 import Droppable from '../../../../src/view/droppable/connected-droppable';

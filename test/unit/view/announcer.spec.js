@@ -1,5 +1,5 @@
 // @flow
-import React, { type Node } from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 import { invariant } from '../../../src/invariant';
 import type { Announce, ContextId } from '../../../src/types';
@@ -10,7 +10,7 @@ jest.useFakeTimers();
 
 type Props = {|
   contextId: ContextId,
-  children: (announce: Announce) => Node,
+  children: (announce: Announce) => React.Node,
 |};
 
 function WithAnnouncer(props: Props) {

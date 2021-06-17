@@ -1,5 +1,6 @@
 // @flow
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { DragDropContext, Droppable, Draggable } from '../../../src';
 import type {
