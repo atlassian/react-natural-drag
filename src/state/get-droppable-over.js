@@ -58,8 +58,8 @@ function getFurthestAway({
       const axis: Axis = candidate.axis;
       const target: Position = patch(
         candidate.axis.line,
-        // use the current center of the dragging item on the main axis
-        pageBorderBox.center[axis.line],
+        // use the center of the list on the main axis
+        candidate.page.borderBox.center[axis.line],
         // use the center of the list on the cross axis
         candidate.page.borderBox.center[axis.crossAxisLine],
       );
