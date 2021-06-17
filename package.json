@@ -142,7 +142,7 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.10.0",
     "wait-port": "0.2.9",
-    "webpack": "4.42.1"
+    "webpack": "4.46.0"
   },
   "peerDependencies": {
     "react": "^16.8.5 || ^17.0.0",
