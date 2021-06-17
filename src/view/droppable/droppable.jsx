@@ -89,21 +89,26 @@ export default function Droppable(props: Props) {
     getDroppableRef,
   });
 
+  const renderPlaceholder = useCallback(
+    ({ onClose, data, animate }: AnimateProvided) => (
+      <Placeholder
+        placeholder={(data: any)}
+        onClose={onClose}
+        innerRef={setPlaceholderRef}
+        animate={animate}
+        contextId={contextId}
+        onTransitionEnd={onPlaceholderTransitionEnd}
+      />
+    ),
+    [contextId, onPlaceholderTransitionEnd, setPlaceholderRef],
+  );
+
   const placeholder: Node = (
     <AnimateInOut
       on={props.placeholder}
       shouldAnimate={props.shouldAnimatePlaceholder}
     >
-      {({ onClose, data, animate }: AnimateProvided) => (
-        <Placeholder
-          placeholder={(data: any)}
-          onClose={onClose}
-          innerRef={setPlaceholderRef}
-          animate={animate}
-          contextId={contextId}
-          onTransitionEnd={onPlaceholderTransitionEnd}
-        />
-      )}
+      {renderPlaceholder}
     </AnimateInOut>
   );
 

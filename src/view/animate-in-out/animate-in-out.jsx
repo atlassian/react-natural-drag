@@ -20,6 +20,44 @@ type State = {|
   animate: InOutAnimationMode,
 |};
 
+const getNextStateFromProps = (props: Props, state: State): State => {
+  if (!props.shouldAnimate) {
+    return {
+      isVisible: Boolean(props.on),
+      data: props.on,
+      animate: 'none',
+    };
+  }
+
+  // need to animate in
+  if (props.on) {
+    return {
+      isVisible: true,
+      // have new data to animate in with
+      data: props.on,
+      animate: 'open',
+    };
+  }
+
+  // need to animate out if there was data
+
+  if (state.isVisible) {
+    return {
+      isVisible: true,
+      // use old data for animating out
+      data: state.data,
+      animate: 'close',
+    };
+  }
+
+  // close animation no longer visible
+  return {
+    isVisible: false,
+    animate: 'close',
+    data: null,
+  };
+};
+
 // Using a class here rather than hooks because
 // getDerivedStateFromProps results in far less renders.
 // Using hooks to implement this was quite messy and resulted in lots of additional renders
@@ -32,42 +70,15 @@ export default class AnimateInOut extends React.PureComponent<Props, State> {
     animate: this.props.shouldAnimate && this.props.on ? 'open' : 'none',
   };
 
-  static getDerivedStateFromProps(props: Props, state: State): State {
-    if (!props.shouldAnimate) {
-      return {
-        isVisible: Boolean(props.on),
-        data: props.on,
-        animate: 'none',
-      };
-    }
+  static getDerivedStateFromProps(props: Props, state: State): ?State {
+    const nextState = getNextStateFromProps(props, state);
+    const shouldUpdate =
+      state.isVisible !== nextState.isVisible ||
+      state.data !== nextState.data ||
+      state.animate !== nextState.animate;
 
-    // need to animate in
-    if (props.on) {
-      return {
-        isVisible: true,
-        // have new data to animate in with
-        data: props.on,
-        animate: 'open',
-      };
-    }
-
-    // need to animate out if there was data
-
-    if (state.isVisible) {
-      return {
-        isVisible: true,
-        // use old data for animating out
-        data: state.data,
-        animate: 'close',
-      };
-    }
-
-    // close animation no longer visible
-    return {
-      isVisible: false,
-      animate: 'close',
-      data: null,
-    };
+    // Avoid re-rendering component if not needed
+    return shouldUpdate ? nextState : null;
   }
 
   onClose = () => {
