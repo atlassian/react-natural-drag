@@ -108,7 +108,7 @@
     "eslint-plugin-react-hooks": "3.0.0",
     "flow-bin": "0.110.1",
     "fs-extra": "9.1.0",
-    "globby": "11.0.3",
+    "globby": "11.0.4",
     "jest": "25.5.4",
     "jest-axe": "3.5.0",
     "jest-junit": "10.0.0",
