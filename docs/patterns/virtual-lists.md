@@ -104,7 +104,7 @@ Usually we require consumers to put a `placeholder` (`<Droppable /> | DroppableP
 </Droppable>
 ```
 
-However, a `placeholder` does not make sense in the context of a virtual list as the dimensions of the list is not based on collective size of the visual items, but rather is calculated based on things like `itemCount` and `itemSize`. (eg `height` = `itemSize` \* `itemCount`). For virtual lists, inserting our own node into it would not increase the size of the list. **So we need you do insert the space for us!**
+However, a `placeholder` does not make sense in the context of a virtual list as the dimensions of the list is not based on collective size of the visual items, but rather is calculated based on things like `itemCount` and `itemSize`. (eg `height` = `itemSize` \* `itemCount`). For virtual lists, inserting our own node into it would not increase the size of the list. **So we need you to insert the space for us!**
 
 A simple way to add extra space to a virtual list is to add a non-visible item to your list. It is important that this extra item is not a `<Draggable />`.
 
