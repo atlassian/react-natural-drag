@@ -2,7 +2,7 @@ version: 2
 jobs:
   install:
     docker:
-      - image: circleci/node:10.24.0-browsers
+      - image: circleci/node:10.24.1-browsers
     working_directory: ~/repo
     steps:
       # Fetch Code
@@ -46,7 +46,7 @@ jobs:
           key: v12-dependencies-{{ checksum "yarn.lock" }}
   validate:
     docker:
-      - image: circleci/node:10.24.0-browsers
+      - image: circleci/node:10.24.1-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -65,7 +65,7 @@ jobs:
           command: yarn validate
   test-unit:
     docker:
-      - image: circleci/node:10.24.0-browsers
+      - image: circleci/node:10.24.1-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -89,7 +89,7 @@ jobs:
           path: test-reports/junit
   test-bundle:
     docker:
-      - image: circleci/node:10.24.0-browsers
+      - image: circleci/node:10.24.1-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -135,7 +135,7 @@ jobs:
           path: cypress/screenshots
   test-a11y:
     docker:
-      - image: circleci/node:10.24.0-browsers
+      - image: circleci/node:10.24.1-browsers
     working_directory: ~/repo
     steps:
       - checkout
