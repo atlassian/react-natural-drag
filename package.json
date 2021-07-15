@@ -124,7 +124,7 @@
     "react-window": "1.8.6",
     "require-from-string": "2.0.2",
     "rimraf": "3.0.2",
-    "rollup": "2.6.1",
+    "rollup": "2.53.2",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
