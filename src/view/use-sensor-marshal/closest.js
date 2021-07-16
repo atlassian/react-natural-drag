@@ -40,11 +40,25 @@ function closestPonyfill(el: ?Element, selector: string) {
   return closestPonyfill(el.parentElement, selector);
 }
 
-export default function closest(el: Element, selector: string): ?Element {
+function closestImpl(el: Element, selector: string): ?Element {
   // Using native closest for maximum speed where we can
   if (el.closest) {
     return el.closest(selector);
   }
   // ie11: damn you!
   return closestPonyfill(el, selector);
+}
+
+export default function closest(el: ?Element, selector: string): ?Element {
+  if (!el || el === document || el === window) {
+    return null;
+  }
+  const found = closestImpl(el, selector);
+
+  if (found) {
+    return found;
+  }
+
+  const root: ShadowRoot = (el.getRootNode(): any);
+  return closest(root.host, selector);
 }

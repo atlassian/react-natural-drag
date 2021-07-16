@@ -21,6 +21,8 @@ type Props = {|
   // See our [sensor api](/docs/sensors/sensor-api.md)
   sensors?: Sensor[],
   enableDefaultSensors?: ?boolean,
+  // Allows customizing the element to add the stylesheets to e.g. when being used in a ShadowRoot
+  stylesInsertionPoint?: ?HTMLElement,
 |};
 
 // Reset any context that gets persisted across server side renders
@@ -51,6 +53,7 @@ export default function DragDropContext(props: Props) {
           onDragStart={props.onDragStart}
           onDragUpdate={props.onDragUpdate}
           onDragEnd={props.onDragEnd}
+          stylesInsertionPoint={props.stylesInsertionPoint}
         >
           {props.children}
         </App>

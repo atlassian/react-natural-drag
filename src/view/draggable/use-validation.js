@@ -46,7 +46,7 @@ export function useValidation(
     // When not enabled there is no drag handle props
     if (props.isEnabled) {
       invariant(
-        findDragHandle(contextId, id),
+        findDragHandle(contextId, id, getRef()),
         `${prefix(id)} Unable to find drag handle`,
       );
     }

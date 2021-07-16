@@ -97,7 +97,7 @@ function getDraggingStyle(dragging: DraggingMapProps): DraggingStyle {
 function getSecondaryStyle(secondary: SecondaryMapProps): NotDraggingStyle {
   return {
     transform: transforms.moveTo(secondary.offset),
-    // transition style is applied in the head
+    // transition style is applied in the head or stylesInsertionPoint
     transition: secondary.shouldAnimateDisplacement ? null : 'none',
   };
 }

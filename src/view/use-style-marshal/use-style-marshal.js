@@ -9,10 +9,11 @@ import getStyles, { type Styles } from './get-styles';
 import { prefix } from '../data-attributes';
 import useLayoutEffect from '../use-isomorphic-layout-effect';
 
-const getHead = (): HTMLHeadElement => {
-  const head: ?HTMLHeadElement = document.querySelector('head');
-  invariant(head, 'Cannot find the head to append a style to');
-  return head;
+const getStylesRoot = (stylesInsertionPoint: ?HTMLElement): HTMLElement => {
+  const stylesRoot: ?HTMLElement =
+    stylesInsertionPoint || document.querySelector('head');
+  invariant(stylesRoot, 'Cannot find the head or root to append a style to');
+  return stylesRoot;
 };
 
 const createStyleEl = (nonce?: string): HTMLStyleElement => {
@@ -24,7 +25,11 @@ const createStyleEl = (nonce?: string): HTMLStyleElement => {
   return el;
 };
 
-export default function useStyleMarshal(contextId: ContextId, nonce?: string) {
+export default function useStyleMarshal(
+  contextId: ContextId,
+  nonce?: string,
+  stylesInsertionPoint?: ?HTMLElement,
+) {
   const styles: Styles = useMemo(() => getStyles(contextId), [contextId]);
   const alwaysRef = useRef<?HTMLStyleElement>(null);
   const dynamicRef = useRef<?HTMLStyleElement>(null);
@@ -63,9 +68,10 @@ export default function useStyleMarshal(contextId: ContextId, nonce?: string) {
     always.setAttribute(`${prefix}-always`, contextId);
     dynamic.setAttribute(`${prefix}-dynamic`, contextId);
 
-    // add style tags to head
-    getHead().appendChild(always);
-    getHead().appendChild(dynamic);
+    // add style tags to styles root
+    const stylesRoot = getStylesRoot(stylesInsertionPoint);
+    stylesRoot.appendChild(always);
+    stylesRoot.appendChild(dynamic);
 
     // set initial style
     setAlwaysStyle(styles.always);
@@ -75,7 +81,7 @@ export default function useStyleMarshal(contextId: ContextId, nonce?: string) {
       const remove = (ref) => {
         const current: ?HTMLStyleElement = ref.current;
         invariant(current, 'Cannot unmount ref as it is not set');
-        getHead().removeChild(current);
+        stylesRoot.removeChild(current);
         ref.current = null;
       };
 
@@ -89,6 +95,7 @@ export default function useStyleMarshal(contextId: ContextId, nonce?: string) {
     styles.always,
     styles.resting,
     contextId,
+    stylesInsertionPoint,
   ]);
 
   const dragging = useCallback(() => setDynamicStyle(styles.dragging), [

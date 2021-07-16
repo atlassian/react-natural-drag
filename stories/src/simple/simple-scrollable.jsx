@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from '../../../src';
+import { ShadowRootContext } from '../shadow-root/inside-shadow-root';
 
 // fake data generator
 const getItems = (count) =>
@@ -84,42 +85,53 @@ export default class App extends Component {
   // But in this example everything is just done in one place for simplicity
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(droppableProvided, droppableSnapshot) => (
-            <div
-              ref={droppableProvided.innerRef}
-              style={getListStyle(
-                droppableSnapshot.isDraggingOver,
-                this.props.overflow,
-              )}
-              onScroll={(e) =>
-                // eslint-disable-next-line no-console
-                console.log('current scrollTop', e.currentTarget.scrollTop)
-              }
-            >
-              {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(draggableProvided, draggableSnapshot) => (
-                    <div
-                      ref={draggableProvided.innerRef}
-                      {...draggableProvided.draggableProps}
-                      {...draggableProvided.dragHandleProps}
-                      style={getItemStyle(
-                        draggableSnapshot.isDragging,
-                        draggableProvided.draggableProps.style,
-                      )}
-                    >
-                      {item.content}
-                    </div>
+      <ShadowRootContext.Consumer>
+        {(stylesRoot) => (
+          <DragDropContext
+            onDragEnd={this.onDragEnd}
+            stylesInsertionPoint={stylesRoot}
+          >
+            <Droppable droppableId="droppable">
+              {(droppableProvided, droppableSnapshot) => (
+                <div
+                  ref={droppableProvided.innerRef}
+                  style={getListStyle(
+                    droppableSnapshot.isDraggingOver,
+                    this.props.overflow,
                   )}
-                </Draggable>
-              ))}
-              {droppableProvided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                  onScroll={(e) =>
+                    // eslint-disable-next-line no-console
+                    console.log('current scrollTop', e.currentTarget.scrollTop)
+                  }
+                >
+                  {this.state.items.map((item, index) => (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id}
+                      index={index}
+                    >
+                      {(draggableProvided, draggableSnapshot) => (
+                        <div
+                          ref={draggableProvided.innerRef}
+                          {...draggableProvided.draggableProps}
+                          {...draggableProvided.dragHandleProps}
+                          style={getItemStyle(
+                            draggableSnapshot.isDragging,
+                            draggableProvided.draggableProps.style,
+                          )}
+                        >
+                          {item.content}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {droppableProvided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        )}
+      </ShadowRootContext.Consumer>
     );
   }
 }

@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from '../../../src';
+import { ShadowRootContext } from '../shadow-root/inside-shadow-root';
 
 // fake data generator
 const getItems = (count) =>
@@ -84,42 +85,53 @@ export default class App extends Component {
   // But in this example everything is just done in one place for simplicity
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(droppableProvided) => (
-            <div
-              ref={droppableProvided.innerRef}
-              style={{
-                width: 250,
-                background: 'lightblue',
+      <ShadowRootContext.Consumer>
+        {(stylesRoot) => (
+          <DragDropContext
+            onDragEnd={this.onDragEnd}
+            stylesInsertionPoint={stylesRoot}
+          >
+            <Droppable droppableId="droppable">
+              {(droppableProvided) => (
+                <div
+                  ref={droppableProvided.innerRef}
+                  style={{
+                    width: 250,
+                    background: 'lightblue',
 
-                ...withAssortedSpacing(),
-                // no margin collapsing
-                marginTop: 0,
-              }}
-            >
-              {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(draggableProvided, draggableSnapshot) => (
-                    <div
-                      ref={draggableProvided.innerRef}
-                      {...draggableProvided.draggableProps}
-                      {...draggableProvided.dragHandleProps}
-                      style={getItemStyle(
-                        draggableSnapshot.isDragging,
-                        draggableProvided.draggableProps.style,
-                      )}
+                    ...withAssortedSpacing(),
+                    // no margin collapsing
+                    marginTop: 0,
+                  }}
+                >
+                  {this.state.items.map((item, index) => (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id}
+                      index={index}
                     >
-                      {item.content}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {droppableProvided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                      {(draggableProvided, draggableSnapshot) => (
+                        <div
+                          ref={draggableProvided.innerRef}
+                          {...draggableProvided.draggableProps}
+                          {...draggableProvided.dragHandleProps}
+                          style={getItemStyle(
+                            draggableSnapshot.isDragging,
+                            draggableProvided.draggableProps.style,
+                          )}
+                        >
+                          {item.content}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {droppableProvided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        )}
+      </ShadowRootContext.Consumer>
     );
   }
 }

@@ -1,5 +1,6 @@
 // @flow
 import isHtmlElement from '../is-type-of-element/is-html-element';
+import { getEventTarget } from '../get-elements/query-elements';
 
 export type TagNameMap = {
   [tagName: string]: true,
@@ -56,7 +57,7 @@ export default function isEventInInteractiveElement(
   draggable: Element,
   event: Event,
 ): boolean {
-  const target: EventTarget = event.target;
+  const target: ?EventTarget = getEventTarget(event);
 
   if (!isHtmlElement(target)) {
     return false;

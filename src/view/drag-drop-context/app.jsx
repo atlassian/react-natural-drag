@@ -63,6 +63,7 @@ export type Props = {|
 
   // screen reader
   dragHandleUsageInstructions: string,
+  stylesInsertionPoint?: ?HTMLElement,
 |};
 
 const createResponders = (props: Props): Responders => ({
@@ -107,7 +108,11 @@ export default function App(props: Props) {
     contextId,
     text: dragHandleUsageInstructions,
   });
-  const styleMarshal: StyleMarshal = useStyleMarshal(contextId, nonce);
+  const styleMarshal: StyleMarshal = useStyleMarshal(
+    contextId,
+    nonce,
+    props.stylesInsertionPoint,
+  );
 
   const lazyDispatch: (Action) => void = useCallback((action: Action): void => {
     getStore(lazyStoreRef).dispatch(action);

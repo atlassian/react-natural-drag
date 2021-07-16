@@ -10,6 +10,7 @@ import type {
   DroppableProvided,
   DraggableProvided,
 } from '../../../src';
+import { ShadowRootContext } from '../shadow-root/inside-shadow-root';
 
 type ItemType = {|
   id: string,
@@ -202,51 +203,58 @@ export default class InteractiveElementsApp extends React.Component<*, State> {
     const { canDragInteractiveElements } = this.state;
 
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Container>
-          <Droppable droppableId="droppable">
-            {(droppableProvided: DroppableProvided) => (
-              <List
-                ref={droppableProvided.innerRef}
-                {...droppableProvided.droppableProps}
-              >
-                {this.state.items.map((item: ItemType, index: number) => (
-                  <Draggable
-                    key={item.id}
-                    draggableId={item.id}
-                    disableInteractiveElementBlocking={
-                      canDragInteractiveElements
-                    }
-                    index={index}
+      <ShadowRootContext.Consumer>
+        {(stylesRoot) => (
+          <DragDropContext
+            onDragEnd={this.onDragEnd}
+            stylesInsertionPoint={stylesRoot}
+          >
+            <Container>
+              <Droppable droppableId="droppable">
+                {(droppableProvided: DroppableProvided) => (
+                  <List
+                    ref={droppableProvided.innerRef}
+                    {...droppableProvided.droppableProps}
                   >
-                    {(draggableProvided: DraggableProvided) => (
-                      <Item
-                        ref={draggableProvided.innerRef}
-                        {...draggableProvided.draggableProps}
-                        {...draggableProvided.dragHandleProps}
+                    {this.state.items.map((item: ItemType, index: number) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        disableInteractiveElementBlocking={
+                          canDragInteractiveElements
+                        }
+                        index={index}
                       >
-                        {item.component}
-                      </Item>
-                    )}
-                  </Draggable>
-                ))}
-                {droppableProvided.placeholder}
-              </List>
-            )}
-          </Droppable>
-          <Controls>
-            <p>
-              Dragging from interactive elements is{' '}
-              <Status isEnabled={canDragInteractiveElements}>
-                {canDragInteractiveElements ? 'enabled' : 'disabled'}
-              </Status>
-            </p>
-            <button type="button" onClick={this.toggleBlocking}>
-              toggle
-            </button>
-          </Controls>
-        </Container>
-      </DragDropContext>
+                        {(draggableProvided: DraggableProvided) => (
+                          <Item
+                            ref={draggableProvided.innerRef}
+                            {...draggableProvided.draggableProps}
+                            {...draggableProvided.dragHandleProps}
+                          >
+                            {item.component}
+                          </Item>
+                        )}
+                      </Draggable>
+                    ))}
+                    {droppableProvided.placeholder}
+                  </List>
+                )}
+              </Droppable>
+              <Controls>
+                <p>
+                  Dragging from interactive elements is{' '}
+                  <Status isEnabled={canDragInteractiveElements}>
+                    {canDragInteractiveElements ? 'enabled' : 'disabled'}
+                  </Status>
+                </p>
+                <button type="button" onClick={this.toggleBlocking}>
+                  toggle
+                </button>
+              </Controls>
+            </Container>
+          </DragDropContext>
+        )}
+      </ShadowRootContext.Consumer>
     );
   }
 }

@@ -119,6 +119,7 @@
     "raf-stub": "3.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-shadow-dom-retarget-events": "^1.0.11",
     "react-test-renderer": "16.13.1",
     "react-virtualized": "9.21.2",
     "react-window": "1.8.6",
