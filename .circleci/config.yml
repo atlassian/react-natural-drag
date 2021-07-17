@@ -110,7 +110,7 @@ jobs:
     docker:
       # Single Docker container with Node 10 and Cypress dependencies
       # https://github.com/cypress-io/circleci-orb/blob/master/src/orb.yml
-      - image: cypress/base:10.22.0
+      - image: cypress/base:14.17.0
     working_directory: ~/repo
     steps:
       - checkout
