@@ -10,7 +10,7 @@ function getSelector(contextId: ContextId): string {
   return `[${attributes.dragHandle.contextId}="${contextId}"]`;
 }
 
-function findClosestDragHandleFromEvent(
+export function findClosestDragHandleFromEvent(
   contextId: ContextId,
   event: Event,
 ): ?HTMLElement {
